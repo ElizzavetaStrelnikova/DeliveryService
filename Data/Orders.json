@@ -1,0 +1,32 @@
+{
+  "Orders": [
+    {
+      "Id": 1,
+      "Weight": 2.0,
+      "DistrictId": 1,
+      "Description": "Роллы Калифорния",
+      "DeliveryTime": "2024-10-10 12:45:00"
+    },
+    {
+      "Id": 2,
+      "Weight": 1.5,
+      "DistrictId": 2,
+      "Description": "Роллы Япония",
+      "DeliveryTime": "2024-10-10 13:00:00"
+    },
+    {
+      "Id": 3,
+      "Weight": 7.0,
+      "DistrictId": 3,
+      "Description": "Сет роллов Якимаки",
+      "DeliveryTime": "2024-10-10 13:10:00"
+    },
+    {
+      "Id": 4,
+      "Weight": 3.0,
+      "DistrictId": 4,
+      "Description": "Поке с курицей",
+      "DeliveryTime": "2024-10-10 13:25:00"
+    }
+  ]
+}
