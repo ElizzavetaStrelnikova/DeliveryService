@@ -7,7 +7,7 @@ namespace DeliveryServiceSystem.Models
         public int Id {  get; set; }
         public string Description { get; set; }
         public double Weight { get; set; }
-        public DateTime DeliveryTime { get; set; }
+        public DateTimeOffset DeliveryTime { get; set; }
 
         public int DistrictId {  get; set; }    
 
@@ -18,7 +18,7 @@ namespace DeliveryServiceSystem.Models
             Id = id;
             Description = description;
             Weight = weight;
-            DeliveryTime = deliveryTime.ToLocalTime();
+            DeliveryTime = deliveryTime;
             DistrictId = districtId;
         }
     }
