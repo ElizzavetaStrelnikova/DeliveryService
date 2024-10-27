@@ -1,4 +1,4 @@
-﻿namespace DeliveryService.DeliveryServiceTests
+﻿namespace DeliveryServiceSystem.DeliveryServiceTests
 {
     public class DeliveryServiceTest
     {

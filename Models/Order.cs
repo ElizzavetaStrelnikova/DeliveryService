@@ -1,21 +1,24 @@
-﻿namespace DeliveryService.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DeliveryServiceSystem.Models
 {
     public class Order
     {
-        public int Id;
-        public string Description;
-        public double Weight;
+        public int Id {  get; set; }
+        public string Description { get; set; }
+        public double Weight { get; set; }
+        public DateTime DeliveryTime { get; set; }
 
-        public DateTime DeliveryTime;
+        public int DistrictId {  get; set; }    
 
-        public District DistrictId;    
+        public Order() { } 
 
-        public Order (int id, string description, double weight, DateTime deliveryTime, District districtId)
+        public Order (int id, string description, double weight, DateTime deliveryTime, int districtId)
         {
             Id = id;
             Description = description;
             Weight = weight;
-            DeliveryTime = deliveryTime;
+            DeliveryTime = deliveryTime.ToLocalTime();
             DistrictId = districtId;
         }
     }

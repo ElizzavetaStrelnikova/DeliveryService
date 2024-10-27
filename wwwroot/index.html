@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" />
+    <title>Служба доставки</title>
+</head>
+<body>
+    <h1>Получение заказов в районе по времени</h1>
+    <input type="text" id="districtInput" placeholder="Введите название района" />
+    <input type="datetime-local" id="timeInput" placeholder="Введите время" />
+    <button onclick="fetchOrders()">Получить заказы</button>
+
+    <div id="error" class="error"></div> 
+    <div id="result"></div>
+
+    <script>
+        async function fetchOrders() {
+            const districtName = document.getElementById('districtInput').value.trim();
+            const startTime = new Date(document.getElementById('timeInput').value).toISOString();
+
+            document.getElementById('result').innerText = "";
+            document.getElementById('error').innerText = "";
+
+            if (!districtName) {
+                document.getElementById('error').innerText = "Ошибка: Пожалуйста, введите название района.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/deliveryservice/filter?districtName=${encodeURIComponent(districtName)}&startTime=${startTime}`);
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    document.getElementById('error').innerText = errorMessage;
+                    return;
+                }
+
+                const orders = await response.json();
+                if (orders.length === 0) {
+                    document.getElementById('result').innerText = "Нет заказов для указанных критериев.";
+                } else {
+                    let resultHtml = "<ul>";
+                    orders.forEach(order => {
+                        resultHtml += `<li>Заказ: ${order.description}, Время доставки: ${new Date(order.deliveryTime).toLocaleString()}</li>`;
+                    });
+                    resultHtml += "</ul>";
+                    document.getElementById('result').innerHTML = resultHtml;
+                }
+            } catch (error) {
+                document.getElementById('error').innerText = "Ошибка при получении данных.";
+                console.error('Ошибка:', error);
+            }
+        }
+    </script>
+</body>
+</html>

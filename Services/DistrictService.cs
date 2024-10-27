@@ -3,12 +3,12 @@ using System.Text.Json;
 
 namespace DeliveryServiceSystem.Services
 {
-    public class OrderService
+    public class DistrictService
     {
-        public List<Order> LoadOrders(string path)
+        public List<District> LoadDistricts(string path)
         {
             var json = File.ReadAllText(path);
-            return JsonSerializer.Deserialize<List<Order>>(json);
+            return JsonSerializer.Deserialize<List<District>>(json);
         }
     }
 }
